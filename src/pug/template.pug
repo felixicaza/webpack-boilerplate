@@ -1,0 +1,74 @@
+doctype html
+html(lang="en", prefix="og: http://ogp.me/ns#")
+   head
+      //- Codification
+      meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+      meta(charset="UTF-8")
+
+      //- Responsive
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+      block assets
+
+      //- SEO
+      meta(name="description", content="Commodo dolore non excepteur ex sunt non magna elit ea ad amet minim laborum.")
+      meta(name="robots", content="index, follow")
+
+      //- Multi Languaje Support
+      link(rel="alternate" href="https://www.site.com/" hreflang="en")/
+      link(rel="alternate" href="https://www.site.com/es/" hreflang="es")/
+      link(rel="canonical" href="https://www.site.com/")
+
+      //- Social
+      //- Facebook (Open Graph)
+      meta(property="og:title", content="Title Page")
+      meta(property="og:description", content="Description Website")
+      meta(property="og:image", content="img/image.png")
+      meta(property="og:image:alt", content="Description Image")
+      meta(property="og:image:width", content="200")
+      meta(property="og:image:height", content="300")
+      meta(property="og:type", content="website")
+      meta(property="og:site_name", content="Site")
+      meta(property="og:url", content="https://www.site.com/")
+      meta(property="og:locale", content="en_US")
+      meta(property="og:locale:alternate", content="es_ES")
+
+      //- Twitter (Twitter Cards)
+      meta(name="twitter:card", content="summary")
+      meta(name="twitter:creator", content="@User")
+
+      //- Favicon
+      link(rel="apple-touch-icon-precomposed", size="180x180", href="img/favicons/apple-touch-icon-180x180-precomposed.png")
+      link(rel="apple-touch-icon", sizes="180x180", href="img/favicons/apple-touch-icon.png")
+      link(rel="icon", type="image/png", sizes="192x192", href="img/favicons/android-chrome-192x192.png")
+      link(rel="icon", type="image/png", sizes="32x32", href="img/favicons/favicon-32x32.png")
+      link(rel="icon", type="image/png", sizes="16x16", href="img/favicons/favicon-16x16.png")
+      link(rel="shortcut icon", sizes="32x32", href="img/favicons/favicon-32x32.ico")
+      link(rel="shortcut icon", sizes="16x16", href="img/favicons/favicon-16x16.ico")
+      link(rel="mask-icon", href="img/favicons/safari-pinned-tab.svg", color="#da532c")
+      meta(name="msapplication-TileImage", content="img/favicons/mstile-144x144.png")
+      meta(name="apple-mobile-web-app-title", content="Title App")
+      meta(name="application-name", content="Title App")
+
+      //- Header color
+      meta(name="msapplication-TileColor", content="#da532c")
+      meta(name="msapplication-navbutton-color", content="#da532c")
+      meta(name="theme-color", content="#da532c")
+      meta(name="apple-mobile-web-app-capable", content="yes")
+      meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
+
+      //- PWA
+      link(rel="manifest" href="manifest.json")
+
+      title #{htmlWebpackPlugin.options.title}
+
+      block styles
+
+   body
+      main
+         header
+            block header
+         block content
+         footer
+            block footer
+      block scripts

@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+// Import Files using 7-1 Pattern
+// Reference: https://sass-guidelin.es/#the-7-1-pattern
+
+// Main SASS Files
+@import './config/_variables', './config/_functions', './config/_mixins';
+
+// Third-party Libs
+// @import './vendor/';
+
+// Styles Base
+@import './base/_default';
+
+// Layouts
+// @import './layouts/';
+
+// Components
+// @import './components/';
+
+// Pages
+// @import './pages/';
+
+// Themes
+@import './themes/themes';
