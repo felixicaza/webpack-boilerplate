@@ -5,6 +5,7 @@ const merge = require('webpack-merge'),
 
 const development = merge(base, {
    mode: 'development',
+   devtool: 'eval',
    output: {
       filename: 'js/bundle.[hash].js',
       chunkFilename: 'js/vendor.[hash].js',

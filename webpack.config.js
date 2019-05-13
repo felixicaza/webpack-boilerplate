@@ -1,5 +1,6 @@
 const path = require('path'),
-   MiniCssExtractPlugin = require('mini-css-extract-plugin');
+   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+   HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const config = {
    entry: {
@@ -11,10 +12,12 @@ const config = {
    module: {
       rules: [
          {
-            test: /\.js$/,
-            exclude: /node_modules/,
+            test: /\.pug$/,
             use: {
-               loader: 'babel-loader',
+               loader: 'pug-loader',
+               options: {
+                  pretty: true,
+               },
             },
          },
          {
@@ -22,6 +25,9 @@ const config = {
             use: [
                {
                   loader: MiniCssExtractPlugin.loader,
+                  options: {
+                     publicPath: '../',
+                  },
                },
                {
                   loader: 'css-loader',
@@ -35,16 +41,30 @@ const config = {
             ],
          },
          {
-            test: /\.pug$/,
+            test: /\.js$/,
+            exclude: /node_modules/,
             use: {
-               loader: 'pug-loader',
+               loader: 'babel-loader',
                options: {
-                  pretty: true,
+                  cacheDirectory: true,
                },
             },
          },
+         {
+            test: /\.(jpe?g|png|gif|mp4|svg|webp|ico)$/,
+            use: [
+               {
+                  loader: 'file-loader',
+                  options: {
+                     name: '[name].[hash].[ext]',
+                     outputPath: 'img/',
+                  },
+               },
+            ],
+         },
       ],
    },
+   plugins: [new HardSourceWebpackPlugin()],
 };
 
 module.exports = config;

@@ -14,7 +14,7 @@ const production = merge(base, {
    mode: 'production',
    output: {
       filename: 'js/bundle.min.[chunkhash].js',
-      chunkFilename: 'js/vendor.min.[chunkhash].js'
+      chunkFilename: 'js/vendor.min.[chunkhash].js',
    },
    optimization: {
       splitChunks: {
@@ -31,14 +31,14 @@ const production = merge(base, {
             default: {
                minChunks: 2,
                priority: -20,
-               reuseExistingChunk: true
+               reuseExistingChunk: true,
             },
             vendors: {
                test: /[\\/]node_modules[\\/]/,
-               priority: -10
-            }
-         }
-      }
+               priority: -10,
+            },
+         },
+      },
    },
    plugins: [
       new HtmlWebpackPlugin({
@@ -56,44 +56,44 @@ const production = merge(base, {
             removeEmptyElements: true,
             collapseWhitespace: true,
             useShortDoctype: true,
-            removeComments: true
-         }
+            removeComments: true,
+         },
       }),
       new PreloadWebpackPlugin({
          rel: 'preload',
          as(entry) {
             if (/\.css$/.test(entry)) return 'style';
             if (/\.(woff(2)?|ttf|eot)$/.test(entry)) return 'font';
-            if (/\.(png|jpe?g|svg)$/.test(entry)) return 'image';
+            if (/\.(png|jpe?g|svg|ico|webp)$/.test(entry)) return 'image';
             return 'script';
          },
-         include: 'allChunks'
-      }),
-      new FileManagerPlugin({
-         onStart: {
-            delete: ['./build']
-         }
+         include: 'allChunks',
       }),
       new MiniCssExtractPlugin({
          filename: 'css/bundle.min.[chunkhash].css',
-         chunkFilename: 'css/vendor.min.[chunkshash].css'
+         chunkFilename: 'css/vendor.min.[chunkshash].css',
       }),
       new PurgecssPlugin({
-         paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true })
+         paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
+      }),
+      new FileManagerPlugin({
+         onStart: {
+            delete: ['./build'],
+         },
       }),
       new CompressionPlugin({
          algorithm: 'gzip',
          compressionOptions: { level: 9 },
-         test: /\.(js|css|html|svg)$/,
-         filename: '[path].gz[query]'
+         test: /\.(html|css|js)$/,
+         filename: '[path].gz[query]',
       }),
       new CompressionPlugin({
          algorithm: 'brotliCompress',
          compressionOptions: { level: 11 },
-         test: /\.(js|css|html|svg)$/,
-         filename: '[path].br[query]'
-      })
-   ]
+         test: /\.(html|css|js)$/,
+         filename: '[path].br[query]',
+      }),
+   ],
 });
 
 module.exports = production;
