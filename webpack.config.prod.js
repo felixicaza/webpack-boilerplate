@@ -7,6 +7,7 @@ const path = require('path'),
    FileManagerPlugin = require('filemanager-webpack-plugin'),
    PurgecssPlugin = require('purgecss-webpack-plugin'),
    CompressionPlugin = require('compression-webpack-plugin'),
+   HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
    base = require('./webpack.config.js'),
    PATHS = { src: path.join(__dirname, 'src') };
 
@@ -93,6 +94,7 @@ const production = merge(base, {
          test: /\.(html|css|js)$/,
          filename: '[path].br[query]',
       }),
+      new HardSourceWebpackPlugin(),
    ],
 });
 
