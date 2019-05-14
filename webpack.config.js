@@ -1,6 +1,5 @@
 const path = require('path'),
-   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-   HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+   MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
    entry: {
@@ -64,7 +63,6 @@ const config = {
          },
       ],
    },
-   plugins: [new HardSourceWebpackPlugin()],
 };
 
 module.exports = config;
