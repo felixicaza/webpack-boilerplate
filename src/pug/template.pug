@@ -1,3 +1,5 @@
+- const title = htmlWebpackPlugin.options.title
+
 doctype html
 html(lang="en", prefix="og: http://ogp.me/ns#")
    head
@@ -21,7 +23,7 @@ html(lang="en", prefix="og: http://ogp.me/ns#")
 
       //- Social
       //- Facebook (Open Graph)
-      meta(property="og:title", content="Title Page")
+      meta(property="og:title", content=`${title}`)
       meta(property="og:description", content="Description Website")
       meta(property="og:image", content=require("./img/image.png"))
       meta(property="og:image:alt", content="Description Image")
@@ -38,17 +40,17 @@ html(lang="en", prefix="og: http://ogp.me/ns#")
       meta(name="twitter:creator", content="@User")
 
       //- Favicon
-      link(rel="apple-touch-icon-precomposed", size="180x180", href=require("./img/favicons/apple-touch-icon-180x180-precomposed.png"))
-      link(rel="apple-touch-icon", sizes="180x180", href=require("./img/favicons/apple-touch-icon.png"))
-      link(rel="icon", type="image/png", sizes="192x192", href=require("./img/favicons/android-chrome-192x192.png"))
-      link(rel="icon", type="image/png", sizes="32x32", href=require("./img/favicons/favicon-32x32.png"))
-      link(rel="icon", type="image/png", sizes="16x16", href=require("./img/favicons/favicon-16x16.png"))
-      link(rel="shortcut icon", sizes="32x32", href=require("./img/favicons/favicon-32x32.ico"))
-      link(rel="shortcut icon", sizes="16x16", href=require("./img/favicons/favicon-16x16.ico"))
-      link(rel="mask-icon", href=require("./img/favicons/safari-pinned-tab.svg"), color="#da532c")
-      meta(name="msapplication-TileImage", content=require("./img/favicons/mstile-144x144.png"))
-      meta(name="apple-mobile-web-app-title", content="Title App")
-      meta(name="application-name", content="Title App")
+      link(rel="apple-touch-icon-precomposed", size="180x180", href="./img/favicons/apple-touch-icon-180x180-precomposed.png")
+      link(rel="apple-touch-icon", sizes="180x180", href="./img/favicons/apple-touch-icon.png")
+      link(rel="icon", type="image/png", sizes="192x192", href="./img/favicons/android-chrome-192x192.png")
+      link(rel="icon", type="image/png", sizes="32x32", href="./img/favicons/favicon-32x32.png")
+      link(rel="icon", type="image/png", sizes="16x16", href="./img/favicons/favicon-16x16.png")
+      link(rel="shortcut icon", sizes="32x32", href="./img/favicons/favicon-32x32.ico")
+      link(rel="shortcut icon", sizes="16x16", href="./img/favicons/favicon-16x16.ico")
+      link(rel="mask-icon", href="./img/favicons/safari-pinned-tab.svg", color="#da532c")
+      meta(name="msapplication-TileImage", content="./img/favicons/mstile-144x144.png")
+      meta(name="apple-mobile-web-app-title", content=`${title}`)
+      meta(name="application-name", content=`${title}`)
 
       //- Header color
       meta(name="msapplication-TileColor", content="#da532c")
@@ -60,7 +62,7 @@ html(lang="en", prefix="og: http://ogp.me/ns#")
       //- PWA
       link(rel="manifest" href="manifest.json")
 
-      title #{htmlWebpackPlugin.options.title}
+      title= title
 
       block styles
 
