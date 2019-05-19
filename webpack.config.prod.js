@@ -81,6 +81,19 @@ const production = merge(base, {
          onStart: {
             delete: ['./build'],
          },
+         onEnd: {
+            copy: [
+               {source: './src/img/favicons/apple-touch-icon-180x180-precomposed.png', destination: './build/img/favicons'},
+               {source: './src/img/favicons/apple-touch-icon.png', destination: './build/img/favicons'},
+               {source: './src/img/favicons/android-chrome-192x192.png', destination: './build/img/favicons'},
+               {source: './src/img/favicons/favicon-32x32.png', destination: './build/img/favicons'},
+               {source: './src/img/favicons/favicon-16x16.png', destination: './build/img/favicons'},
+               {source: './src/img/favicons/favicon-32x32.ico', destination: './build/img/favicons'},
+               {source: './src/img/favicons/favicon-16x16.ico', destination: './build/img/favicons'},
+               {source: './src/img/favicons/safari-pinned-tab.svg', destination: './build/img/favicons'},
+               {source: './src/img/favicons/mstile-144x144.png', destination: './build/img/favicons'},
+            ]
+         }
       }),
       new CompressionPlugin({
          algorithm: 'gzip',
