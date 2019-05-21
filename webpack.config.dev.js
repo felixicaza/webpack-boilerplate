@@ -7,8 +7,8 @@ const development = merge(base, {
    mode: 'development',
    devtool: 'eval',
    output: {
-      filename: 'js/bundle.[hash].js',
-      chunkFilename: 'js/vendor.[hash].js',
+      filename: 'js/bundle.[hash:3].js',
+      chunkFilename: 'js/vendor.[hash:3].js',
    },
    plugins: [
       new HtmlWebpackPlugin({
@@ -18,8 +18,8 @@ const development = merge(base, {
          minify: false,
       }),
       new MiniCssExtractPlugin({
-         filename: 'css/bundle.[hash].css',
-         chunkFilenmae: 'css/vendor.[hash].css',
+         filename: 'css/bundle.[hash:3].css',
+         chunkFilenmae: 'css/vendor.[hash:3].css',
       }),
    ],
 });

@@ -14,8 +14,8 @@ const path = require('path'),
 const production = merge(base, {
    mode: 'production',
    output: {
-      filename: 'js/bundle.min.[chunkhash].js',
-      chunkFilename: 'js/vendor.min.[chunkhash].js',
+      filename: 'js/bundle.min.[chunkhash:3].js',
+      chunkFilename: 'js/vendor.min.[chunkhash:3].js',
    },
    optimization: {
       splitChunks: {
@@ -71,8 +71,8 @@ const production = merge(base, {
          include: 'allChunks',
       }),
       new MiniCssExtractPlugin({
-         filename: 'css/bundle.min.[chunkhash].css',
-         chunkFilename: 'css/vendor.min.[chunkshash].css',
+         filename: 'css/bundle.min.[chunkhash:3].css',
+         chunkFilename: 'css/vendor.min.[chunkshash:3].css',
       }),
       new PurgecssPlugin({
          paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
