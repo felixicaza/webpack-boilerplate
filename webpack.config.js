@@ -1,9 +1,12 @@
 const path = require('path'),
-   MiniCssExtractPlugin = require('mini-css-extract-plugin');
+   MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+   PurgecssPlugin = require('purgecss-webpack-plugin'),
+   glob = require('glob'),
+   PATHS = { src: path.join(__dirname, 'src') };
 
 const config = {
    entry: {
-      main: ['./src/js/index.js'],
+      bundle: ['./src/js/index.js'],
    },
    output: {
       path: path.resolve(__dirname, 'build'),
@@ -55,7 +58,7 @@ const config = {
                {
                   loader: 'file-loader',
                   options: {
-                     name: '[name].[hash:3].[ext]',
+                     name: '[name].[hash:7].[ext]',
                      outputPath: 'img/',
                   },
                },
@@ -63,6 +66,11 @@ const config = {
          },
       ],
    },
+   plugins: [
+      new PurgecssPlugin({
+         paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
+      }),
+   ]
 };
 
 module.exports = config;
