@@ -6,6 +6,7 @@ const path = require('path'),
    CompressionPlugin = require('compression-webpack-plugin'),
    HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
    Critters = require('critters-webpack-plugin'),
+   ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin'),
    base = require('./webpack.config.js');
 
 const production = merge(base, {
@@ -63,6 +64,7 @@ const production = merge(base, {
       new Critters({
          preload: 'default',
       }),
+      new ResourceHintWebpackPlugin(),
       new FileManagerPlugin({
          onStart: {
             delete: ['./build'],
