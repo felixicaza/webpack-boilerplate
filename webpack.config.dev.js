@@ -4,6 +4,7 @@ const path = require('path'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    Critters = require('critters-webpack-plugin'),
    ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin'),
+   ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
    base = require('./webpack.config.js');
 
 const development = merge(base, {
@@ -16,7 +17,6 @@ const development = merge(base, {
    plugins: [
       new HtmlWebpackPlugin({
          template: './src/index.pug',
-         filename: 'index.html',
          title: 'Webpack Environment',
          minify: false,
       }),
@@ -26,6 +26,9 @@ const development = merge(base, {
       }),
       new Critters({
          preload: 'default',
+      }),
+      new ScriptExtHtmlWebpackPlugin({
+         defaultAttribute: 'defer',
       }),
       new ResourceHintWebpackPlugin(),
    ],

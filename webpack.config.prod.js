@@ -7,6 +7,7 @@ const path = require('path'),
    HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
    Critters = require('critters-webpack-plugin'),
    ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin'),
+   ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
    base = require('./webpack.config.js');
 
 const production = merge(base, {
@@ -63,6 +64,9 @@ const production = merge(base, {
       }),
       new Critters({
          preload: 'default',
+      }),
+      new ScriptExtHtmlWebpackPlugin({
+         defaultAttribute: 'defer',
       }),
       new ResourceHintWebpackPlugin(),
       new FileManagerPlugin({
