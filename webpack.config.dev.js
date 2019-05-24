@@ -1,14 +1,16 @@
-const merge = require('webpack-merge'),
+const path = require('path'),
+   merge = require('webpack-merge'),
    HtmlWebpackPlugin = require('html-webpack-plugin'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
+   Critters = require('critters-webpack-plugin'),
    base = require('./webpack.config.js');
 
 const development = merge(base, {
    mode: 'development',
    devtool: 'eval',
    output: {
-      filename: 'js/bundle.[hash:3].js',
-      chunkFilename: 'js/vendor.[hash:3].js',
+      filename: path.join('js', '[name].[hash:7].js'),
+      chunkFilename: path.join('js', '[name].[hash:7].js'),
    },
    plugins: [
       new HtmlWebpackPlugin({
@@ -18,8 +20,11 @@ const development = merge(base, {
          minify: false,
       }),
       new MiniCssExtractPlugin({
-         filename: 'css/bundle.[hash:3].css',
-         chunkFilenmae: 'css/vendor.[hash:3].css',
+         filename: path.join('css', '[name].[hash:7].css'),
+         chunkFilenmae: path.join('css', '[name].[hash:7].css'),
+      }),
+      new Critters({
+         preload: 'default',
       }),
    ],
 });

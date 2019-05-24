@@ -3,19 +3,19 @@ const path = require('path'),
    glob = require('glob'),
    HtmlWebpackPlugin = require('html-webpack-plugin'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
-   PreloadWebpackPlugin = require('preload-webpack-plugin'),
    FileManagerPlugin = require('filemanager-webpack-plugin'),
    PurgecssPlugin = require('purgecss-webpack-plugin'),
    CompressionPlugin = require('compression-webpack-plugin'),
    HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
+   Critters = require('critters-webpack-plugin'),
    base = require('./webpack.config.js'),
    PATHS = { src: path.join(__dirname, 'src') };
 
 const production = merge(base, {
    mode: 'production',
    output: {
-      filename: 'js/bundle.min.[chunkhash:3].js',
-      chunkFilename: 'js/vendor.min.[chunkhash:3].js',
+      filename: path.join('js', '[name].min.[chunkhash:7].js'),
+      chunkFilename: path.join('js', '[name].min.[chunkhash:7].js'),
    },
    optimization: {
       splitChunks: {
@@ -26,7 +26,7 @@ const production = merge(base, {
          maxAsyncRequests: 5,
          maxInitialRequests: 3,
          minSize: 0,
-         automaticNameDelimiter: '~',
+         automaticNameDelimiter: '-',
          name: true,
          cacheGroups: {
             default: {
@@ -44,7 +44,6 @@ const production = merge(base, {
    plugins: [
       new HtmlWebpackPlugin({
          template: './src/index.pug',
-         filename: 'index.html',
          title: 'Webpack Environment',
          minify: {
             removeStyleLinkTypeAttributes: true,
@@ -60,22 +59,15 @@ const production = merge(base, {
             removeComments: true,
          },
       }),
-      new PreloadWebpackPlugin({
-         rel: 'preload',
-         as(entry) {
-            if (/\.css$/.test(entry)) return 'style';
-            if (/\.(woff(2)?|ttf|eot)$/.test(entry)) return 'font';
-            if (/\.(png|jpe?g|svg|ico|webp)$/.test(entry)) return 'image';
-            return 'script';
-         },
-         include: 'allChunks',
-      }),
       new MiniCssExtractPlugin({
-         filename: 'css/bundle.min.[chunkhash:3].css',
-         chunkFilename: 'css/vendor.min.[chunkshash:3].css',
+         filename: path.join('css', '[name].min.[chunkhash:7].css'),
+         chunkFilename: path.join('css', '[name].min.[chunkhash:7].css'),
       }),
       new PurgecssPlugin({
          paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
+      }),
+      new Critters({
+         preload: 'default',
       }),
       new FileManagerPlugin({
          onStart: {
