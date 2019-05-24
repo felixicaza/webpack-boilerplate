@@ -1,15 +1,12 @@
 const path = require('path'),
    merge = require('webpack-merge'),
-   glob = require('glob'),
    HtmlWebpackPlugin = require('html-webpack-plugin'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    FileManagerPlugin = require('filemanager-webpack-plugin'),
-   PurgecssPlugin = require('purgecss-webpack-plugin'),
    CompressionPlugin = require('compression-webpack-plugin'),
    HardSourceWebpackPlugin = require('hard-source-webpack-plugin'),
    Critters = require('critters-webpack-plugin'),
-   base = require('./webpack.config.js'),
-   PATHS = { src: path.join(__dirname, 'src') };
+   base = require('./webpack.config.js');
 
 const production = merge(base, {
    mode: 'production',
@@ -62,9 +59,6 @@ const production = merge(base, {
       new MiniCssExtractPlugin({
          filename: path.join('css', '[name].min.[chunkhash:7].css'),
          chunkFilename: path.join('css', '[name].min.[chunkhash:7].css'),
-      }),
-      new PurgecssPlugin({
-         paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
       }),
       new Critters({
          preload: 'default',
