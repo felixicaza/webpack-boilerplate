@@ -11,6 +11,23 @@ const config = {
    output: {
       path: path.resolve(__dirname, 'build'),
    },
+   optimization: {
+      runtimeChunk: 'single',
+      splitChunks: {
+         chunks: 'all',
+         minSize: 0,
+         maxInitialRequests: Infinity,
+         cacheGroups: {
+            vendor: {
+               test: /[\\/]node_modules[\\/]/,
+               name(module) {
+                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                  return `vendors.${packageName.replace('@', '')}`;
+               }
+            },
+         },
+      },
+   },
    module: {
       rules: [
          {
