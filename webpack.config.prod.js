@@ -16,30 +16,6 @@ const production = merge(base, {
       filename: path.join('js', '[name].min.[chunkhash:7].js'),
       chunkFilename: path.join('js', '[name].min.[chunkhash:7].js'),
    },
-   optimization: {
-      splitChunks: {
-         chunks: 'all',
-         minSize: 30000,
-         maxSize: 0,
-         minChunks: 1,
-         maxAsyncRequests: 5,
-         maxInitialRequests: 3,
-         minSize: 0,
-         automaticNameDelimiter: '-',
-         name: true,
-         cacheGroups: {
-            default: {
-               minChunks: 2,
-               priority: -20,
-               reuseExistingChunk: true,
-            },
-            vendors: {
-               test: /[\\/]node_modules[\\/]/,
-               priority: -10,
-            },
-         },
-      },
-   },
    plugins: [
       new HtmlWebpackPlugin({
          template: './src/index.pug',
