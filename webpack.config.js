@@ -49,7 +49,7 @@ const config = {
                   },
                },
                {
-                  loader: 'css-loader',
+                  loader: 'fast-css-loader',
                },
                {
                   loader: 'postcss-loader',
