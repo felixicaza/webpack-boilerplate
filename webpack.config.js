@@ -21,9 +21,11 @@ const config = {
             vendor: {
                test: /[\\/]node_modules[\\/]/,
                name(module) {
-                  const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+                  const packageName = module.context.match(
+                     /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
+                  )[1];
                   return `vendors.${packageName.replace('@', '')}`;
-               }
+               },
             },
          },
       },
@@ -81,13 +83,22 @@ const config = {
                },
             ],
          },
+         {
+            test: /\.modernizrrc\.js$/,
+            loader: 'webpack-modernizr-loader',
+         },
       ],
+   },
+   resolve: {
+      alias: {
+         modernizr$: path.resolve(__dirname, './.modernizrrc.js'),
+      },
    },
    plugins: [
       new PurgecssPlugin({
          paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
       }),
-   ]
+   ],
 };
 
 module.exports = config;
