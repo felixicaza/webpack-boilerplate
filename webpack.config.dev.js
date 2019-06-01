@@ -26,6 +26,7 @@ const development = merge(base, {
       }),
       new Critters({
          preload: 'default',
+         compress: false,
       }),
       new ScriptExtHtmlWebpackPlugin({
          defaultAttribute: 'defer',
