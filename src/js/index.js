@@ -1,15 +1,19 @@
 // Styles Files
 import(
-   /* webpackMode: "eager", webpackPreload: true */
+   /* webpackMode: "eager" */
    '../sass/main.scss'
 );
 
 // JavaScript Files
 import(
-   /* webpackMode: "eager", webpackPreload: true */
+   /* webpackMode: "eager" */
    '@babel/polyfill'
 );
 import(
-   /* webpackMode: "eager", webpackPreload: true */
+   /* webpackMode: "eager" */
+   'modernizr'
+);
+import(
+   /* webpackMode: "eager" */
    './navbar.js'
 );
