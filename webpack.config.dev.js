@@ -1,5 +1,6 @@
 const path = require('path'),
    merge = require('webpack-merge'),
+   webpack = require('webpack'),
    HtmlWebpackPlugin = require('html-webpack-plugin'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    Critters = require('critters-webpack-plugin'),
@@ -10,6 +11,9 @@ const path = require('path'),
 const development = merge(base, {
    mode: 'development',
    devtool: 'eval',
+   devServer: {
+      hot: true,
+   },
    output: {
       filename: path.join('js', '[name].[hash:7].js'),
       chunkFilename: path.join('js', '[name].[hash:7].js'),
@@ -32,6 +36,7 @@ const development = merge(base, {
          defaultAttribute: 'defer',
       }),
       new ResourceHintWebpackPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
    ],
 });
 
