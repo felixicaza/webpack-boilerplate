@@ -1,6 +1,7 @@
 const path = require('path'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    PurgecssPlugin = require('purgecss-webpack-plugin'),
+   BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
    glob = require('glob'),
    PATHS = { src: path.join(__dirname, 'src') };
 
@@ -98,6 +99,7 @@ const config = {
       new PurgecssPlugin({
          paths: glob.sync(`${PATHS.src}/**/*.pug`, { nodir: true }),
       }),
+      new BundleAnalyzerPlugin(),
    ],
 };
 
