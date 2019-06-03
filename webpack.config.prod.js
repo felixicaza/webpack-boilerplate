@@ -8,6 +8,7 @@ const path = require('path'),
    Critters = require('critters-webpack-plugin'),
    ResourceHintWebpackPlugin = require('resource-hints-webpack-plugin'),
    ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin'),
+   GitRevisionPlugin = require('git-revision-webpack-plugin'),
    base = require('./webpack.config.js');
 
 const production = merge(base, {
@@ -75,6 +76,7 @@ const production = merge(base, {
          test: /\.(html|css|js)$/,
          filename: '[path].br[query]',
       }),
+      new GitRevisionPlugin(),
       new HardSourceWebpackPlugin(),
    ],
 });
