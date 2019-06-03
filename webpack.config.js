@@ -31,6 +31,11 @@ const config = {
          },
       },
    },
+   performance: {
+      hints: false,
+      maxEntrypointSize: 500000,
+      maxAssetSize: 200000,
+   },
    module: {
       rules: [
          {
