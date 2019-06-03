@@ -43,7 +43,7 @@ const config = {
             },
          },
          {
-            test: /\.(sa|sc)ss$/,
+            test: /\.(sa|sc|c)ss$/,
             use: [
                {
                   loader: MiniCssExtractPlugin.loader,
