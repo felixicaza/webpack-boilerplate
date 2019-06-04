@@ -7,7 +7,7 @@ const path = require('path'),
 
 const config = {
    entry: {
-      bundle: ['./src/js/index.js'],
+      bundle: ['./src/ts/index.ts'],
    },
    output: {
       path: path.resolve(__dirname, 'build'),
@@ -72,10 +72,12 @@ const config = {
             exclude: /node_modules/,
             use: {
                loader: 'babel-loader',
-               options: {
-                  cacheDirectory: true,
-               },
             },
+         },
+         {
+            test: /\.ts$/,
+            exclude: /node_modules/,
+            loader: 'awesome-typescript-loader',
          },
          {
             test: /\.(jpe?g|png|gif|mp4|svg|webp|ico)$/,
@@ -96,6 +98,7 @@ const config = {
       ],
    },
    resolve: {
+      extensions: ['.ts', '.js'],
       alias: {
          modernizr$: path.resolve(__dirname, './.modernizrrc.js'),
       },
