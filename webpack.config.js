@@ -2,6 +2,7 @@ const path = require('path'),
    MiniCssExtractPlugin = require('mini-css-extract-plugin'),
    PurgecssPlugin = require('purgecss-webpack-plugin'),
    BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
+   TerserPlugin = require('terser-webpack-plugin'),
    glob = require('glob'),
    PATHS = { src: path.join(__dirname, 'src') };
 
@@ -30,6 +31,17 @@ const config = {
             },
          },
       },
+      minimizer: [
+         new TerserPlugin({
+            test: /\.js$/,
+            cache: true,
+            terserOptions: {
+               output: {
+                  comments: false,
+               },
+            },
+         }),
+      ],
    },
    performance: {
       hints: false,
